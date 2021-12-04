@@ -15,7 +15,7 @@ class Enemy():
 
     def destroy(self):
         self.good_bye=True
-        self.enemyX = random.randint(0,800)
+        self.enemyX = random.randint(40,760)
         self.enemyY = random.randint(1,50)
 
     def back_from_the_dead(self):
@@ -30,7 +30,7 @@ bang_sound =mixer.Sound("laser.wav")
 kablam_sound =mixer.Sound("explosion.wav")
 background=pygame.image.load("space background.png")
 
-level=6
+level=1
 enemys_amount=1
 
 playerImg =pygame.image.load("battleship.png")
@@ -93,7 +93,7 @@ def isHit(enemyX, enemyY, boomX, boomY):
 def isHitB(enemyX, enemyY, boomX, boomY):
     if ( (boomY - enemyY) <= 40 ):
         if ( (boomX - enemyX) <= 40 ):
-            distance = ( (boomX - enemyX-64)**2 + (boomY - enemyY-64)**2 )**(1/2)
+            distance = ( (boomX - enemyX-16)**2 + (boomY - enemyY-16)**2 )**(1/2)
             if (distance < 40):
                 return True
     return False
@@ -135,10 +135,10 @@ while running:
             enemy_list[i].enemyX+=enemy_list[i].enemyX_change*speed
             if enemy_list[i].enemyX<=0:
                 enemy_list[i].enemyX_change *= -1
-                enemy_list[i].enemyY+=20
+                enemy_list[i].enemyY+=40
             elif enemy_list[i].enemyX>=768:
                 enemy_list[i].enemyX_change *= -1
-                enemy_list[i].enemyY+=20
+                enemy_list[i].enemyY+=40
             enemy_list[i].enemy()
             if (fire):
                 if isHit(enemy_list[i].enemyX, enemy_list[i].enemyY, boomX, boomY):
